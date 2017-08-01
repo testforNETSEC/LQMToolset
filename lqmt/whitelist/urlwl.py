@@ -25,7 +25,7 @@ class URLWL(Whitelist):
         """Return whether or not the indicator of type indicatorType is whitelisted by this whitelist.
         This checks the indicator against the URLs in the table and requires an exact match to be considered whitelisted."""
         c=conn.cursor()
-        c.execute("select url from url where url=?",(indicator,))
+        c.execute("select url from url where ? like url",(indicator,))
         rec=c.fetchone()
         c.close()
         return rec != None
